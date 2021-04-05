@@ -47,3 +47,5 @@ docker-compose exec -T web python3 manage.py createsuperuser
 
 
 [link]: http://localhost:8000/admin/
+
+https://github.com/EndorpfinSplash/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg
