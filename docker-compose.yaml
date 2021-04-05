@@ -16,7 +16,7 @@ services:
       - ./.env
 
   django:
-    image: andrewzinovec/yamdb_for_dockerhub:latest
+    image: andrewzinovec/yamdb_final:latest
     depends_on:
       - db
     restart: always
