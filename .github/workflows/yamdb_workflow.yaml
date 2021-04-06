@@ -71,7 +71,7 @@ jobs:
             export DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
             export DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
             export DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
-            cd code
+            cd code/
             sudo docker image prune -f
             sudo docker pull andrewzinovec/yamdb_final
             sudo docker-compose down
