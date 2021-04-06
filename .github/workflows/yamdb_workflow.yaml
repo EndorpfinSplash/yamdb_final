@@ -50,7 +50,7 @@ jobs:
     needs: build_and_push_to_docker_hub
     steps:
       - name: Check out the repo
-          uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
@@ -61,7 +61,6 @@ jobs:
           source: "./docker-compose.yaml"
             target: "./code/"
           script: |
-
             export DB_ENGINE=${{ secrets.DB_ENGINE }}
             export DB_NAME=${{ secrets.DB_NAME }}
             export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
