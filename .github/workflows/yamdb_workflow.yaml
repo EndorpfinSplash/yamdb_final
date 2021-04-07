@@ -51,15 +51,18 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: preparation for receiving docker-compose
-        uses: appleboy/ssh-action@master
+
+      - name: copy docker-compose.yaml file to remote
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST_WITH_DOCKER }}
           username: ${{ secrets.USER_YC }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          script:
-            mkdir -p code
+          overwrite: true
+          source: "./docker-compose.yaml, ./nginx"
+          target: "./code/"
+
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
@@ -67,6 +70,7 @@ jobs:
           username: ${{ secrets.USER_YC }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
+          overwrite: true
           source: "./docker-compose.yaml"
           target: "./code/"
           script: |
@@ -77,9 +81,9 @@ jobs:
             export DB_HOST=${{ secrets.DB_HOST }}
             export DB_PORT=${{ secrets.DB_PORT }}
             export SECRET_KEY=${{ secrets.SECRET_KEY }}
-            cd ./code/
+            cd code/
             sudo docker image prune -f
-            sudo docker pull andrewzinovec/yamdb_final
+            sudo docker pull andrewzinovec/yamdb_final:latest
             sudo docker-compose down
             sudo docker-compose up -d
 
