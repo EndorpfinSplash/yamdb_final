@@ -74,16 +74,15 @@ jobs:
           source: "./docker-compose.yaml"
           target: "./code/"
           script: |
-            export DB_ENGINE=${{ secrets.DB_ENGINE }}
-            export DB_NAME=${{ secrets.DB_NAME }}
-            export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
-            export POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-            export DB_HOST=${{ secrets.DB_HOST }}
-            export DB_PORT=${{ secrets.DB_PORT }}
-            export SECRET_KEY=${{ secrets.SECRET_KEY }}
-            cd code/
+            сd code/
             rm .env
             touch .env
+            echo DB_ENGINE=${{ secrets.DB_ENGINE }} > .env
+            echo DB_NAME=${{ secrets.DB_NAME }} >> .env
+            echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+            echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
+            echo DB_HOST=${{ secrets.DB_HOST }} >> .env
+            echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             sudo docker image prune -f
             sudo docker pull andrewzinovec/yamdb_final:latest
             sudo docker-compose down
