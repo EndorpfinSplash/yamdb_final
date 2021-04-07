@@ -82,6 +82,8 @@ jobs:
             export DB_PORT=${{ secrets.DB_PORT }}
             export SECRET_KEY=${{ secrets.SECRET_KEY }}
             cd code/
+            rm .env
+            touch .env
             sudo docker image prune -f
             sudo docker pull andrewzinovec/yamdb_final:latest
             sudo docker-compose down
