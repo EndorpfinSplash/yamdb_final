@@ -51,6 +51,14 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: preparation for receiving docker-compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_WITH_DOCKER }}
+          username: ${{ secrets.USER_YC }}
+          key: ${{ secrets.SSH_KEY }}
+          script:
+            mkdir code
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
