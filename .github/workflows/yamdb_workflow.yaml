@@ -70,9 +70,6 @@ jobs:
           username: ${{ secrets.USER_YC }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          overwrite: true
-          source: "./docker-compose.yaml"
-          target: "./code/"
           script: |
             сd code/
             rm .env
