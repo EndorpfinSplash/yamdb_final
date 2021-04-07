@@ -59,7 +59,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script:
-            mkdir code
+            mkdir -p code
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
