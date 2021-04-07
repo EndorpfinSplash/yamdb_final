@@ -57,6 +57,7 @@ jobs:
           host: ${{ secrets.HOST_WITH_DOCKER }}
           username: ${{ secrets.USER_YC }}
           key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
           script:
             mkdir code
       - name: executing remote ssh commands to deploy
